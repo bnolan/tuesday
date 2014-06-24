@@ -14,7 +14,6 @@
 <script type="text/html" id="page-edit">
   <div class="toolbar">
     <button class="home">&laquo; Home</button>
-    <button onclick="window.location.reload()">Reload</button>
     <button class="addElement">+ Add</button>
   </div>
 
@@ -43,8 +42,16 @@
 
 <script type="text/html" id="page-list">
   <div class="toolbar">
-    <button onclick="window.location.reload()">Reload</button>
     <button class="addPage">+ Add</button>
+  </div>
+
+  <div class="site-info">
+    <h3 class="site-name"></h3>
+    <address class="site-subdomain"></address>
+
+    <p class="no-content">
+      This is an empty site. Click the "+ Add" button to start adding pages to your site.
+    </p>
   </div>
 
   <ul class="page-list">
@@ -92,11 +99,12 @@
 
 <script>
   $(function(){
-    var pages = new PageCollection(<%= @pages.to_json(:include => [:elements]).html_safe %>);
+    var pages = new PageCollection(<%= @site.pages.to_json(:include => [:elements]).html_safe %>),
+      site = new Site(<%= @site.to_json.html_safe %>);
 
     // window.page = new Page(<%= @page.to_json(:include => [:elements]).html_safe %>);
 
-    window.router = new Router(pages)
+    window.router = new Router(site, pages)
 
     Backbone.history.start()
   });

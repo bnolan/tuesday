@@ -117,8 +117,26 @@ h1,h2,h3,h4,h5,p{
   padding-bottom: 50px;
 }
 
-.page-list{
+.site-info{
   margin: 40px 0 0 0;
+  padding: 10px 0;
+  background: #f3f3f3;
+  border-bottom: 1px solid #ccc;
+  color: #555;
+
+  h3{
+    margin: 0;
+  }
+  address{
+    position: relative;
+    top: -2px;
+    padding-left: 10px;
+    color: green;
+  }
+}
+
+.page-list{
+  margin: 0;
   padding: 0;
 
   li{
@@ -151,5 +169,24 @@ h1,h2,h3,h4,h5,p{
       padding: 5px;
       width: 100%;
     }
+  }
+}
+
+.sites-controller, .devise-registrations-controller{
+  h1{
+    background: linear-gradient($color, lighten($color, 20%));
+    border-bottom: 1px solid #ccc;
+    margin: 0 0 20px 0;
+  }  
+
+  form>div{
+    padding: 10px;
+  }
+
+  input{
+    width: 100%;
+    font: inherit;
+    border-radius: 2px;
+    border: 1px solid #ccc;
   }
 }

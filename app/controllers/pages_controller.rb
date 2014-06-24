@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!
   require 'nokogiri'
 
   # THIS IS GROSS YO
@@ -18,6 +19,7 @@ class PagesController < ApplicationController
   end
 
   def update
+    @site = Site.find(params[:site_id])
     @page = Page.find_or_create_by(:id => params[:id])
 
     @page.elements.delete_all
@@ -36,7 +38,8 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.create! page_params
+    @site = Site.find(params[:site_id])
+    @page = @site.pages.create! page_params
 
     render :json => { :success => true }
   end

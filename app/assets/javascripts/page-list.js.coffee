@@ -6,6 +6,9 @@ class PageList extends Backbone.View
   render: ->
     @$el.html @template
 
+    @$(".site-name").html(@model.get('name'))
+    @$(".site-subdomain").html(@model.get('subdomain') + ".tuesdayapp.com")
+
     ul = @$(".page-list")
 
     @collection.each (page) ->
@@ -35,9 +38,9 @@ class PageList extends Backbone.View
 
   onClick: (e) =>
     el = $(e.currentTarget)
-    window.location.hash = "page/" + el.attr('data-id')
+    window.location.hash = "pages/" + el.attr('data-id')
 
   onAddPage: ->
-    window.location.hash = "page/new"
+    window.location.hash = "pages/new"
 
 @PageList = PageList

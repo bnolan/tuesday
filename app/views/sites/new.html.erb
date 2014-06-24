@@ -1,0 +1,38 @@
+<h1>
+  New Site
+</h1>
+
+<%= form_for @site do |f| %>
+
+  <div class="f">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <small>eg: "Dave and Johns wedding"</small>
+  </div>
+
+  <div class="f">
+    <%= f.label :subdomain %>
+    <%= f.text_field :subdomain %>
+    <small>
+      Your site will be available at subdomain.tuesdayapp.com. Using your
+      custom domain is available for $13 / site / year.
+    </small>
+  </div>
+
+  <div class="f">
+    <%= submit_tag "Create!" %>
+  </div>
+
+<% end %>
+
+<script>
+  function onChange(){
+    var val = $("#site_name").val();
+
+    val = val.toLowerCase().split(' ').slice(0,3).join('-').replace(/[^a-z0-9]+/,'-').replace(/^-+/,'').replace(/-+$/,'')
+
+    $("#site_subdomain").val(val);
+  }
+  
+  $("#site_name").keyup(onChange).change(onChange);
+</script>

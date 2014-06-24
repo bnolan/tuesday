@@ -5,12 +5,13 @@
 class Router extends Backbone.Router
   routes : {
     "" : "pageList"
-    "page/new" : "newPage"
-    "page/:page" : "editPage"
-    "page/:page/edit/:element" : "editElement"
+    "pages/new" : "newPage"
+    "pages/:page" : "editPage"
+    "pages/:page/edit/:element" : "editElement"
   } 
 
-  initialize: (pages) ->
+  initialize: (site, pages) ->
+    @site = site
     @pages = pages
     @el = $('.container')
 
@@ -20,6 +21,7 @@ class Router extends Backbone.Router
   pageList: ->
     new PageList {
       el : @el.empty()
+      model : @site
       collection : @pages
     }
 
@@ -85,7 +87,8 @@ class PageElementCollection extends Backbone.Collection
 @PageElementCollection = PageElementCollection
 
 class Page extends Backbone.Model
-  url : 'pages'
+  url : ->
+    '/sites/' + router.site.id + '/pages/'
 
   getElements: ->
     @elements ||= @_parseElements()
@@ -115,6 +118,10 @@ class Page extends Backbone.Model
   #   }
   #   alert 'eh.'
 @Page = Page
+
+class Site extends Backbone.Model
+  url : 'site'
+@Site = Site
 
 class PageCollection extends Backbone.Collection
   model : Page
@@ -192,7 +199,7 @@ class ElementEditor extends Backbone.View
   save: ->
     @model.getPage().save {}, {
       success : =>
-        window.location.hash = "page/#{@model.getPage().id}"
+        window.location.hash = "pages/#{@model.getPage().id}"
       error: =>
         alert "COULDNT SAVE YO"
     }

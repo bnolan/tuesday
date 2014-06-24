@@ -52,10 +52,10 @@ class PageEditor extends Backbone.View
 
     @collection.add(el)
 
-    window.location.hash = "page/#{@model.id}/edit/#{el.cid}"
+    window.location.hash = "pages/#{@model.id}/edit/#{el.cid}"
 
   onDblClick: (e) =>
     el = $(e.currentTarget)
-    window.location.hash = "page/#{@model.id}/edit/#{el.attr('data-cid')}"
+    window.location.hash = "pages/#{@model.id}/edit/#{el.attr('data-cid')}"
 
 @PageEditor = PageEditor

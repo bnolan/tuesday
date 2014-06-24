@@ -1,13 +1,16 @@
 Cms::Application.routes.draw do
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#show'
+  root 'welcome#index'
 
-  resources :pages
+  resources :sites do
+    resources :pages
+  end
 
-  put 'pages' => 'pages#update'
+  put 'sites/:site_id/pages' => 'pages#update'
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

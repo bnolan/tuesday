@@ -4,7 +4,14 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
+
+gem 'capistrano'
+gem 'capistrano-rvm'
+gem 'capistrano-bundle'
+gem 'capistrano-rails', '~> 1.1'
+
+gem 'devise'
 
 gem 'nokogiri'
 
