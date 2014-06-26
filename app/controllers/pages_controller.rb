@@ -20,19 +20,9 @@ class PagesController < ApplicationController
 
   def update
     @site = Site.find(params[:site_id])
-    @page = Page.find_or_create_by(:id => params[:id])
+    @page = Page.find(params[:id])
 
-    @page.elements.delete_all
-
-    params[:elements].each do |el|
-      @page.elements.build(
-        :content => el[:content],
-        :position => el[:position],
-        :uuid => el[:uuid]
-      )
-    end
-
-    @page.save!
+    @page.update_attributes! page_params
 
     render :json => { :success => true }
   end
@@ -45,7 +35,7 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:title, :path, :position)
+    params.require(:page).permit(:title, :path, :position, :content)
   end
 
 end

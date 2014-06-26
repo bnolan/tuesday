@@ -7,7 +7,7 @@
     <button class="createlink" style="text-decoration: underline; color: blue;">&#8734;</button>
   </div>
 
-  <div class="editing-field" contenteditable="true">
+  <div class="editing-field">
   </div>
 </script>
 
@@ -15,6 +15,16 @@
   <div class="toolbar">
     <button class="home">&laquo; Home</button>
     <button class="addElement">+ Add</button>
+  </div>
+
+  <div class="subtoolbar toolbar">
+    <button class="heading">Heading</button>
+    <button class="paragraph">Paragraph</button>
+  </div>
+
+  <div class="page-info">
+    <h3 class="page-name">My Thousand Quid</h3>
+    <address class="page-path">/my-thousand-quid</address>
   </div>
 
   <div class="page">
@@ -99,7 +109,7 @@
 
 <script>
   $(function(){
-    var pages = new PageCollection(<%= @site.pages.to_json(:include => [:elements]).html_safe %>),
+    var pages = new PageCollection(<%= @site.pages.to_json.html_safe %>),
       site = new Site(<%= @site.to_json.html_safe %>);
 
     // window.page = new Page(<%= @page.to_json(:include => [:elements]).html_safe %>);

@@ -18,8 +18,14 @@ class Router extends Backbone.Router
   showSpinner: ->
     @el.empty().html("<center class='spinner'>Loading yo...</center>")
 
+  setView: (view) ->
+    if @view
+      @view.undelegateEvents()
+
+    @view = view
+
   pageList: ->
-    new PageList {
+    @setView new PageList {
       el : @el.empty()
       model : @site
       collection : @pages
@@ -28,7 +34,7 @@ class Router extends Backbone.Router
   newPage: ->
     page = new Page { title : 'New Page' }
 
-    new PageDetails {
+    @setView new PageDetails {
       el : @el.empty()
       model : page
     }
@@ -36,14 +42,14 @@ class Router extends Backbone.Router
   editPage: (id) ->
     page = @pages.get(id)
 
-    new PageEditor { 
+    @setView new PageEditor { 
       el : @el.empty()
       model : page
       collection : page.getElements()
     }
 
   editElement: (pageId, elementCid) ->
-    new ElementEditor {
+    @setView new ElementEditor {
       el : @el.empty()
       model : @pages.get(pageId).getElements().get(elementCid)
     }
@@ -73,9 +79,6 @@ class PageElement extends Backbone.Model
 class PageElementCollection extends Backbone.Collection
   model: PageElement
 
-  getByUUID: (uuid) ->
-    @find (el) -> el.get('uuid') == uuid
-
   comparator: (a,b) ->
     if a.get('position') < b.get('position')
       -1
@@ -94,22 +97,42 @@ class Page extends Backbone.Model
     @elements ||= @_parseElements()
 
   _parseElements: ->
-    if @get('elements') && !_.isEmpty(@get('elements'))
-      array = for element in @get('elements')
-        new PageElement element
-      new PageElementCollection(array)
-    else
-      new PageElementCollection
+    doc = $("<div>" + @get('content') + "</div>")
+    # doc = $("<div><h1>Something</h1><p>New page...</p></div>")
+
+    index = 0
+
+    array = for element in doc.children()
+      new PageElement { 
+        content : $('<div>').append($(element).clone().removeAttr('contenteditable')).html()
+        position : ++index
+        page_id : @id
+      }
+
+    new PageElementCollection(array)
+    # if @get('elements') && !_.isEmpty(@get('elements'))
+    # else
+    #   new PageElementCollection
+
+  getElementsAsHtml: ->
+    html = ''
+
+    @getElements().each (el) ->
+      html += el.get('content')
+
+    console.log html
+
+    html
 
   autoPath: ->
-    @get('title').toLowerCase().replace(/[^a-z0-9\-_]+/,'-')
+    @get('title').toLowerCase().replace(/[^a-z0-9\-_]+/g,'-')
 
   toJSON: ->
     {
       id : @get('id')
       title : @get('title')
       position : @get('position')
-      elements : @getElements().toJSON()
+      content : @getElementsAsHtml()
     }
   # save: ->
   #   $.ajax {
@@ -142,7 +165,7 @@ class ElementEditor extends Backbone.View
     @render()
 
   focus: ->
-    p = @$(".editing-field > *:first")[0]
+    p = @$(".editing-field *")[0]
     s = window.getSelection()
     r = document.createRange()
     r.setStart(p, 0)
@@ -153,11 +176,14 @@ class ElementEditor extends Backbone.View
   render: ->
     @$el.html @template
     @$(".toolbar").css {
-      top : $(window).height() - @$(".toolbar").height() - 320 # todo detect the keyboard size
+      top : $(window).height() - @$(".toolbar").height() - 260 # todo detect the keyboard size
     }
-    @$(".editing-field").html(@model.get('content'))
-    @focus()
+    @$(".editing-field").html(@model.get('content')).children().attr('contenteditable', true)
     @delegateEvents()
+
+    setTimeout( =>
+      @focus()
+    , 100)
 
     if @model.getNodeName() != "p"
       @$(".toolbar button + button + button").hide()
@@ -192,11 +218,17 @@ class ElementEditor extends Backbone.View
       return true
 
 
+  disableEditable: ->
+    @$(".editing-field > *").removeAttr('contenteditable')
+    
   onSave: =>
+    @disableEditable()
     @model.set { content : @$(".editing-field").html() }
     @save()
 
   save: ->
+    console.log "saving #{@model.cid}"
+
     @model.getPage().save {}, {
       success : =>
         window.location.hash = "pages/#{@model.getPage().id}"

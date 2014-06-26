@@ -17,12 +17,14 @@ class PageEditor extends Backbone.View
         # resort the pages
         index = 0
         
-        for el in @$(".page > *")
+        for el in @$(".page").children()
           @collection.get($(el).attr('data-cid')).set {
             position : ++index
           }
 
-          @model.save()
+        @collection.sort()
+
+        @model.save()
 
     }).disableSelection()
 
@@ -33,12 +35,23 @@ class PageEditor extends Backbone.View
   events: {
     "click .home" : 'onHome'
     "click .addElement" : 'onAddElement'
+    "click .paragraph" : 'onParagraph'
+    "click .heading" : 'onHeading'
   }
 
   onHome: ->
     window.location.hash = "#"
 
   onAddElement: ->
+    @$(".subtoolbar").toggle()
+
+  onParagraph: ->
+    @addElement("<p>Your content goes here...</p>")
+
+  onHeading: ->
+    @addElement("<h1>Heading</h1>")
+
+  addElement: (html) ->
     position = if @collection.isEmpty()
         1
       else
@@ -47,7 +60,7 @@ class PageEditor extends Backbone.View
     el = new PageElement { 
       position : position
       page_id : @model.id
-      content : "<p>hello world</p>"
+      content : html
     }
 
     @collection.add(el)
