@@ -49,6 +49,26 @@
 <div class="two-column-layout">
   <div class="left-column">
 
+    <h3>Site details</h3>
+
+    <dl>
+      <dt>Site name</dt>
+      <dd><%= @site.name %></dd>
+      <dt>Site domain</dt>
+      <dd><%= @site.subdomain %>.tuesdayapp.com</dd>
+      <dt>Theme</dt>
+      <dd><%= @site.theme.name %></dd>
+    </dl>
+
+    <h3>
+      Theme
+    </h3>
+
+    <p>
+      &gt; <%= link_to "Edit theme", edit_theme_path(@site.theme.id) %><br />
+      &gt; <%= link_to "View site", @site.full_url %>
+    </p>
+
     <h3>Pages</h3>
 
     <ul>

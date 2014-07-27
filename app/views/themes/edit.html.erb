@@ -1,20 +1,40 @@
 
 <div class="two-column-layout">
-  <div class="left-column"
+  <div class="left-column">
     <%= form_for @theme do |f| %>
 
-      <%= submit_tag "SAVE" %>
-
-      <%= link_to "< Back", @site %>
+      <div class="toolbar">
+        <%= link_to "< Back", @site %>
+        <%= submit_tag "SAVE" %>
+      </div>
 
       <ul class="tabs">
         <li>Liquid template</li>
-        <li>Scss stylesheet</li>
+        <li>Template</li>
+        <li>Stylesheet</li>
       </ul>
 
-      <%= f.text_area :template, :wrap => 'off' %>
+      <div class="active pane">
+        <div class="explanation">
+          Below are all the available themes for 
+        </div>
+      </div>
 
-      <%= f.text_area :stylesheet, :wrap => 'off' %>
+      <div class="pane">
+        <div class="explanation">
+          This is a liquid template. You can read more about <%= link_to "liquid markup here", "https://github.com/Shopify/liquid/wiki/Liquid-for-Designers" %>.
+        </div>
+        
+        <%= f.text_area :template, :wrap => 'off' %>
+      </div>
+
+      <div class="pane">
+        <div class="explanation">
+          This is a .scss stylesheet. You can read <%= link_to "about sass here", "http://sass-lang.com/documentation/file.SASS_REFERENCE.html" %>.
+        </div>
+
+        <%= f.text_area :stylesheet, :wrap => 'off' %>
+      </div>
 
     <% end %>
   </div>

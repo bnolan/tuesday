@@ -17,6 +17,7 @@ class SitesController < ApplicationController
 
   def show
     @site = Site.find(params[:id])
+    redirect_to [@site, @site.home_page]
   end
 
   protected
