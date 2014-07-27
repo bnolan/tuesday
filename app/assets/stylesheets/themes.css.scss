@@ -9,6 +9,22 @@ $height: 800px;
     background: #ccc;
     height: $height;
 
+    .pane.active{
+      display: block;
+    }
+
+    .pane{
+      padding: 5px;
+      background: white;
+      border: 1px solid #777;
+      display: none;
+
+      .explanation{
+        font-size: 0.85em;
+        color: #666;
+      }
+    }
+
     textarea{
       width: 100%;
       height: $height - 50px;

@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
   end
 
   def set_content
-    self.content = "<h1>#{self.title.slice(0,20)}</h1><p>Double tap this content to edit.</p>"
+    self.content = "<h1>#{self.title.slice(0,20)}</h1><p>Tap this content to edit.</p>"
   end
 
   def to_liquid

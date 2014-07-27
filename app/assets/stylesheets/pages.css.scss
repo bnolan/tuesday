@@ -31,7 +31,7 @@
       border-radius: 3px;
       background: linear-gradient(#555, #777);
       color: white;
-      padding: 10px;
+      padding: 5px 10px;
       box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
       border-top: 1px solid rgba(255,255,255,0.8);
       border-bottom: 1px solid rgba(0,0,0,0.5);
@@ -43,6 +43,13 @@
         background: none;
         color: white;
         text-shadow: 1px 1px 1px black;
+        line-height: 30px;
+        padding: 0 5px;
+        margin: 0;
+
+        &:hover{
+          color: yellow;
+        }
       }
 
       .float-right{
