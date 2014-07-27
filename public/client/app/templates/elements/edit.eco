@@ -1,0 +1,13 @@
+<div class="elements-edit">
+  <header class="toolbar">
+    <button class="save">&laquo; Save</button>
+    <button class="bold" style="font-weight: bold">B</button>
+    <button class="italic" style="font-style: italic">i</button>
+    <button class="createlink" style="text-decoration: underline; color: blue;">&#8734;</button>
+    <button class="delete">Delete</button>
+  </header>
+
+  <div class="editing-field">
+    <%- @model.get('content') %>
+  </div>
+</div>

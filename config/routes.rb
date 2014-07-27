@@ -10,8 +10,15 @@ Cms::Application.routes.draw do
     resources :pages
   end
 
-  put 'sites/:site_id/pages' => 'pages#update'
+  resources :themes
   
+  put 'sites/:site_id/pages' => 'pages#update'
+
+  match '*path' => 'welcome#options', :via => [:options]
+  match 'pages' => 'welcome#options', :via => [:options]
+  
+  get '*path' => 'pages#show'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

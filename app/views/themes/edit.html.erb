@@ -1,0 +1,31 @@
+
+<div class="two-column-layout">
+  <div class="left-column"
+    <%= form_for @theme do |f| %>
+
+      <%= submit_tag "SAVE" %>
+
+      <%= link_to "< Back", @site %>
+
+      <ul class="tabs">
+        <li>Liquid template</li>
+        <li>Scss stylesheet</li>
+      </ul>
+
+      <%= f.text_area :template, :wrap => 'off' %>
+
+      <%= f.text_area :stylesheet, :wrap => 'off' %>
+
+    <% end %>
+  </div>
+
+  <div class="right-column">
+    <center>
+      <%= select_tag "Page", options_for_select(@site.pages.pluck('title')) %>
+    </center>
+
+    <iframe class="preview-iframe" src="http://rissa-and-bens.localhost:4000/date.html">
+      
+    </iframe>
+  </div>
+</div>

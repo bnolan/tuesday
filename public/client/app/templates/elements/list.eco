@@ -1,0 +1,22 @@
+<div class="elements-list">
+  <header>
+    <button class="home">&laquo; Back</button>
+    <button class="addElement">+ Add</button>
+    <button class="orderElements">&equiv; Reorder</button>
+  </header>
+
+  <div class="subtoolbar toolbar" style="display: none">
+    <button class="heading">Heading</button>
+    <button class="paragraph">Paragraph</button>
+    <button class="image">Image</button>
+    <button class="snippet">Snippet</button>
+  </div>
+
+  <div class="page-info">
+    <h3 class="page-name"><%= @model.get('title') %></h3>
+    <address class="page-path">/<%= @model.getPath() %></address>
+  </div>
+
+  <div class="page">
+  </div>
+</div>

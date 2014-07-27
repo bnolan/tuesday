@@ -1,0 +1,27 @@
+<div class="pages-list">
+  <header>
+    <a href="/" class="home">&laquo; Back</a>
+    <button class="addPage">+ Add</button>
+    <button class="orderElements">&equiv; Shuffle</button>
+  </header>
+
+  <div class="site-info">
+    <h3 class="site-name"><%= @model.get('name') %></h3>
+    <address class="site-subdomain"><%= @model.get('domain') %></address>
+
+    <% if @collection.isEmpty(): %>
+      <p class="no-content">
+        This is an empty site. Click the "+ Add" button to start adding pages to your site.
+      </p>
+    <% end %>
+  </div>
+
+  <ul class="page-list">
+    <% for page in @collection.models: %>
+      <li data-id="<%= page.id %>">
+        <span class="title"><%= page.get('title') %></span>
+        <span class="snippet"><%= page.getSnippet() %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>

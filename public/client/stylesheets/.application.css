@@ -1,0 +1,72 @@
+header {
+  background: #FE4365;
+  margin: 0;
+  padding: 0;
+}
+header button {
+  background: none;
+  border: none;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  font: inherit;
+  border-right: 1px solid white;
+  line-height: 40px;
+  display: inline-block;
+  margin: 0;
+  padding: 0 10px;
+}
+body {
+  font-family: 'roboto', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+.pages-list .site-info {
+  background: #F9CDAD;
+  color: #333;
+}
+.pages-list .site-info * {
+  margin: 0;
+  padding: 0 10px;
+}
+.pages-list .site-info address {
+  color: #777;
+}
+.pages-list ul {
+  margin: 0;
+  padding: 0;
+}
+.pages-list ul li {
+  margin: 0;
+  padding: 8px 10px;
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+}
+.pages-list ul li span {
+  display: block;
+}
+.pages-list ul li .snippet {
+  color: #777;
+  font-size: 0.85em;
+}
+.elements-list .toolbar {
+  background: linear-gradient(#dddddd, #eeeeee);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid #ccc;
+  color: #333;
+  line-height: 40px;
+}
+.elements-list .toolbar button {
+  background: none;
+  border: none;
+  font: inherit;
+  display: inline-block;
+  border-right: 1px solid #ccc;
+}
+.elements-list .page p,
+.elements-list .page h1,
+.elements-list .page h2,
+.elements-list .page h3 {
+  padding-left: 10px;
+  padding-right: 10px;
+}

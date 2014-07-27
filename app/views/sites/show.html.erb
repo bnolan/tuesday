@@ -1,121 +1,32 @@
-<script type="text/html" id="element-edit">
-  <div class="toolbar">
-    <button class="save">Save</button>
-    <button class="delete">Delete</button>
-    <button class="bold" style="font-weight: bold">B</button>
-    <button class="italic" style="font-style: italic">i</button>
-    <button class="createlink" style="text-decoration: underline; color: blue;">&#8734;</button>
-  </div>
+<dl>
+  <dt>Site name</dt>
+  <dd><%= @site.name %></dd>
+  <dt>Site domain</dt>
+  <dd><%= @site.subdomain %>.tuesdayapp.com</dd>
+  <dt>Created</dt>
+  <dd><%= @site.created_at %></dd>
+  <dt>Pages</dt>
+  <dd><%= @site.pages.count %></dd>
+  <dt>Theme</dt>
+  <dd><%= @site.theme.name %></dd>
+</dl>
 
-  <div class="editing-field">
-  </div>
-</script>
+<h3>
+  Theme
+</h3>
 
-<script type="text/html" id="page-edit">
-  <div class="toolbar">
-    <button class="home">&laquo; Home</button>
-    <button class="addElement">+ Add</button>
-  </div>
+<p>
+  &gt; <%= link_to "Edit theme", edit_theme_path(@site.theme.id) %>
+</p
 
-  <div class="subtoolbar toolbar">
-    <button class="heading">Heading</button>
-    <button class="paragraph">Paragraph</button>
-  </div>
+<h3>
+  Pages in this site
+</h3>
 
-  <div class="page-info">
-    <h3 class="page-name">My Thousand Quid</h3>
-    <address class="page-path">/my-thousand-quid</address>
-  </div>
-
-  <div class="page">
-  </div>
-</script>
-
-<script type="text/html" id="page-details">
-  <div class="toolbar">
-    <button class="save">Save</button>
-    <button class="delete">Delete</button>
-  </div>
-
-  <div class="page-details">
-    <div class="f">
-      <label>Page name</label>
-      <input type="text" name="title" />
-    </div>
-
-    <div class="f">
-      <label>URL for this page will be</label>
-      <span class="path"></span>
-    </div>
-  </div>
-</script>
-
-<script type="text/html" id="page-list">
-  <div class="toolbar">
-    <button class="addPage">+ Add</button>
-  </div>
-
-  <div class="site-info">
-    <h3 class="site-name"></h3>
-    <address class="site-subdomain"></address>
-
-    <p class="no-content">
-      This is an empty site. Click the "+ Add" button to start adding pages to your site.
-    </p>
-  </div>
-
-  <ul class="page-list">
-  </ul>
-</script>
-
-<div class="container">
-  <!--div class="page-view">
-
-    <div class="page" id="page-1">
-      <h1>Opening hours</h1>
-
-      <p>Hashigo Zake is open 363 days a year. Closed christmas day and easter sunday.</p>
-
-      <table id="element-3" class="component-hours">
-        <tr>
-          <td>Sunday-Thursday</td>
-          <td>Midday-Midnight</td>
-        </tr>
-        <tr>
-          <td>Friday-Saturday</td>
-          <td>Midday-2am</td>
-        </tr>
-      </table>
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-
-      <h1>
-        Something else
-      </h1>
-
-      <p>
-        WOO BABY.
-      </p>
-    </div>
-  </div-->
-</div>
-
-<script>
-  $(function(){
-    var pages = new PageCollection(<%= @site.pages.to_json.html_safe %>),
-      site = new Site(<%= @site.to_json.html_safe %>);
-
-    // window.page = new Page(<%= @page.to_json(:include => [:elements]).html_safe %>);
-
-    window.router = new Router(site, pages)
-
-    Backbone.history.start()
-  });
-</script>
+<ul>
+  <% @site.pages.each do |page| %>
+    <li>
+      <%= link_to page.name, edit_site_page_path(@site, page) %>
+    </li>
+  <% end %>
+</ul>

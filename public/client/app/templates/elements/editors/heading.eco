@@ -1,0 +1,13 @@
+<div class="elements-edit">
+  <header class="toolbar">
+    <button class="save">&laquo; Save</button>
+    <button class="h1" style="font-size: 2em">Large</button>
+    <button class="h2" style="font-size: 1.5em">Medium</button>
+    <button class="h3" style="font-size: 1.0em">Small</button>
+    <button class="delete">Delete</button>
+</header>
+
+  <div class="editing-field">
+    <%- @model.get('content') %>
+  </div>
+</div>

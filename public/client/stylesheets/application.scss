@@ -1,0 +1,113 @@
+$pink: #FE4365;
+
+header, .toolbar{
+  background: linear-gradient($pink, lighten($pink, 10%));
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  margin: 0;
+  padding: 0;
+
+  button, a{
+    background: none;
+    border: none;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    font: inherit;
+    border-right: 1px solid #555;
+    line-height: 40px;
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px;
+  }
+}
+
+body{
+  font-family: 'roboto', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.pages-list{
+  .site-info{
+    color: #333;
+
+    *{
+      margin: 0;
+      padding: 0 10px;
+    }
+
+    address{
+      color: #777;
+    }
+  }
+
+  ul{
+    margin: 0;
+    padding: 0;
+
+    li{
+      margin: 0;
+      padding: 8px 10px;
+      list-style: none;
+      border-bottom: 1px solid #ccc;
+
+      span{
+        display: block;
+      }
+
+      .title{
+      }
+
+      .snippet{
+        color: #777;
+        font-size: 0.85em;
+      }
+    }
+  }
+}
+
+.elements-list{
+  .subtoolbar{
+   background: linear-gradient(darken($pink, 20%), darken($pink, 10%));
+   border-top: 1px solid #555;
+  }
+
+  .subsubtoolbar.headings{
+   background: linear-gradient(darken($pink, 30%), darken($pink, 20%));
+   border-top: 1px solid #555;
+
+   button{
+    font-weight: bold;
+    line-height: 40px;
+   }
+  }
+
+  .page-info{
+    padding: 10px 10px 10px 10px;
+    background: #eee;
+
+    *{
+      margin: 0;
+    }
+
+    address{
+      color: #999;
+    }
+  }
+  .page{
+    p,h1,h2,h3{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}
+
+.paragraph-element-edit{
+  *{
+    outline: none;
+  }
+
+  p{
+    padding: 0 10px;
+  }
+}

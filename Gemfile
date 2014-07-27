@@ -11,11 +11,14 @@ gem 'capistrano-rvm'
 gem 'capistrano-bundle'
 gem 'capistrano-rails', '~> 1.1'
 
+gem 'liquid'
+
 gem 'devise'
 
 gem 'nokogiri'
 
 # Use SCSS for stylesheets
+gem 'sass'
 gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets

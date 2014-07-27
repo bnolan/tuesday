@@ -10,10 +10,25 @@
 </head>
 <body class="<%= params[:controller].gsub(/[^a-z\-]+/,'-') %>-controller <%= params[:action] %>-action">
 
-  <% if notice.present? %><p class="notice"><%= notice %></p><% end %>
-  <% if alert.present? %><p class="alert"><%= alert %></p><% end %>
+  <div class="page-wrapper">
+    <header>
 
-  <%= yield %>
+      <h1>
+        <b>Tuesday</b> - Website builder for Mobile
+      </h1>
+
+      <div class="auth">
+        <%= link_to "Sign in", new_user_session_path %> |
+        <%= link_to "Register", new_user_registration_path %>
+      </div>
+
+    </header>
+
+    <% if notice.present? %><p class="notice"><%= notice %></p><% end %>
+    <% if alert.present? %><p class="alert"><%= alert %></p><% end %>
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>

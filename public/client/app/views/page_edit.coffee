@@ -1,4 +1,4 @@
-class PageDetails extends Backbone.View
+class PageEdit extends Backbone.View
   initialize: ->
     @template = $("script#page-details").html()
     @render()
@@ -33,8 +33,13 @@ class PageDetails extends Backbone.View
     window.location.hash = ""
 
   onTitleChange: =>
-    @model.set { title : @$("[name='title']").val() }
+    path = @model.autoPath()
 
-    @$(".path").text(@model.autoPath())
+    @model.set { 
+      title : @$("[name='title']").val() 
+      path : path
+    }
 
-@PageDetails = PageDetails
+    @$(".path").text(path)
+
+@PageEdit = PageEdit

@@ -1,0 +1,23 @@
+
+javascripts:
+  - 'lib/jquery.js'
+  - 'lib/underscore.js'
+  - 'lib/backbone.js'
+  - 'app/application.coffee'
+  - 'app/router.coffee'
+  - 'app/views/**/*.coffee'
+  - 'app/models/*.coffee'
+
+stylesheets:
+  - 'stylesheets/application.css'
+
+specs:
+  - 'spec/*/*.coffee'
+  - 'spec/views/*/*.coffee'
+  
+fixtures:
+  
+templates:
+  - 'app/templates/*.eco'
+  - 'app/templates/*/*.eco'
+  - 'app/templates/elements/editors/*.eco'

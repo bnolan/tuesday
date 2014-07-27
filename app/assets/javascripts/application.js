@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui-1.10.4
-//= require jquery.ui.touch-punch
 //= require underscore
 //= require backbone
 //= require_tree .
+
+//= require jquery-ui-1.10.4
+// require turbolinks
 
 (function($) {
  $.fn.doubleTap = function(doubleTapCallback) {
@@ -36,3 +37,12 @@
     });
   }
 })(jQuery);
+
+// $(document).on('page:fetch', function() {
+//   $("<img src='/spinner.gif' />").addClass("spinner").appendTo("body").show();
+// });
+
+// $(document).on('page:change', function() {
+//   $("img.spinner").remove();
+// });
+

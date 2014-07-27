@@ -11,26 +11,29 @@ class PageEditor extends Backbone.View
     @collection.each (element) =>
       $(element.get('content')).attr('data-cid', element.cid).appendTo div
 
-    div.sortable({
-      axis : 'y'
-      stop: ( e, ui ) =>
-        # resort the pages
-        index = 0
+    # div.sortable({
+    #   axis : 'y'
+    #   stop: ( e, ui ) =>
+    #     # resort the pages
+    #     index = 0
         
-        for el in @$(".page").children()
-          @collection.get($(el).attr('data-cid')).set {
-            position : ++index
-          }
+    #     for el in @$(".page").children()
+    #       @collection.get($(el).attr('data-cid')).set {
+    #         position : ++index
+    #       }
 
-        @collection.sort()
+    #     @collection.sort()
 
-        @model.save()
+    #     @model.save()
 
-    }).disableSelection()
+    # }).disableSelection()
+
+    @$(".page-name").text(@model.get('title'))
+    @$(".page-path").text('/' + @model.get('path'))
 
     @delegateEvents()
 
-    div.children().doubleTap(@onDblClick)
+    div.children().click(@onDblClick)
 
   events: {
     "click .home" : 'onHome'
@@ -65,10 +68,10 @@ class PageEditor extends Backbone.View
 
     @collection.add(el)
 
-    window.location.hash = "pages/#{@model.id}/edit/#{el.cid}"
+    window.location.hash = "elements/#{el.cid}/edit"
 
   onDblClick: (e) =>
     el = $(e.currentTarget)
-    window.location.hash = "pages/#{@model.id}/edit/#{el.attr('data-cid')}"
+    window.location.hash = "elements/#{el.attr('data-cid')}/edit"
 
 @PageEditor = PageEditor

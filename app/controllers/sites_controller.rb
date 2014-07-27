@@ -16,7 +16,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = current_user.sites.find(params[:id])
+    @site = Site.find(params[:id])
   end
 
   protected

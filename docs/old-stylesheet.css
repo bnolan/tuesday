@@ -1,0 +1,170 @@
+.container{
+  background: #ccc;
+}
+
+.component-hours{
+  border-top: 1px solid #ccc;
+  border-spacing: collapse;
+  width: 100%;
+
+  td{
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+}
+
+.toolbar{
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient($color, darken($color, 5%));
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  font-size: 1px;
+
+  button{
+    line-height: 40px;
+    height: 40px;
+    display: inline-block;
+    border: none;
+    border-right: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 1px 0 0 rgba(0,0,0,0.2);
+    text-shadow: 1px 1px rgba(255,255,255,0.5);
+    color: #222;
+    background: none;
+    font: inherit;
+    padding: 0 10px;
+    margin: 0;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
+
+    &:active, &:hover{
+      background-color: $color;
+      top: 1px;
+      left: 1px;
+    }
+  }
+}
+
+.subtoolbar{
+  top: 40px;
+  display: none;
+}
+
+.page{
+  position: relative;
+  padding-top: 1px;
+  min-height: 800px;
+  font-size: 0.7em;
+
+  // -webkit-transform: scale(0.7) translate(30px);
+
+  margin-left: 30px;
+  margin-right: 30px;
+  left: -2px;
+
+  background: white;
+  box-shadow: 2px 0 3px rgba(0,0,0,0.3);
+
+
+  & > *{
+    background: white;
+  }
+
+  .overlay{
+    background: rgba(255,0,192,0.2);
+    border: 1px solid rgba(255,0,192,1);
+    border-radius: 3px;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.editing-field{
+  background: white;
+  padding: 0;
+  padding-bottom: 50px;
+}
+
+.site-info, .page-info{
+  margin: 40px 0 0 0;
+  padding: 10px 0;
+  background: #f3f3f3;
+  border-bottom: 1px solid #ccc;
+  color: #555;
+
+  h3{
+    margin: 0;
+  }
+  address{
+    position: relative;
+    top: -2px;
+    padding-left: 10px;
+    color: green;
+  }
+}
+
+.page-info{
+  margin-bottom: 20px;
+}
+
+
+.page-list{
+  margin: 0;
+  padding: 0;
+
+  li{
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+    background: white;
+    border-bottom: 1px solid #ccc;
+    line-height: 50px;
+  }
+}
+
+.page-details{
+  margin-top: 40px;
+  background: white;
+
+  .f{
+    padding: 10px;
+    
+    label{
+      display: block;
+      font-size: 0.9em;
+      color: #333;
+    }
+
+    input{
+      font: inherit;
+      border-radius: 2px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      width: 100%;
+    }
+  }
+}
+
+.sites-controller.new-action, .devise-registrations-controller{
+  h1{
+    background: linear-gradient($color, lighten($color, 20%));
+    border-bottom: 1px solid #ccc;
+    margin: 0 0 20px 0;
+  }  
+
+  form>div{
+    padding: 10px;
+  }
+
+  input{
+    width: 100%;
+    font: inherit;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+  }
+}

@@ -1,0 +1,66 @@
+// Place all the styles related to the themes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$height: 800px;
+
+.themes-controller{
+  .two-column-layout{
+    background: #ccc;
+    height: $height;
+
+    textarea{
+      width: 100%;
+      height: $height - 50px;
+      color: #333;
+      padding: 5px;
+      font-family: 'Consolas', monospace;
+      font-size: 16px;
+    }
+
+    textarea + textarea{
+      display: none
+    }
+
+    .left-column{
+      width: 500px;
+      float: left;
+      padding: 5px;
+
+      ul.tabs{
+        margin: 0;
+        padding: 0;
+
+        li{
+          margin: 0;
+          list-style: none;
+          border: 1px solid #777;
+          background: white;
+          display: inline-block;
+          border-radius: 5px 5px 0 0;
+          padding: 5px;
+          border-bottom: none;
+        }
+
+        li:first-child{
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+
+    .right-column{
+      width: 100%;
+      text-align: center;
+      
+      .preview-iframe{
+        width: 320px;
+        height: $height - 100px;
+        margin: 0 auto;
+        border: none;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 2px;
+      }
+    }
+  }
+}
