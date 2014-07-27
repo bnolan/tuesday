@@ -12,7 +12,6 @@ gem 'capistrano-bundle'
 gem 'capistrano-rails', '~> 1.1'
 
 gem 'liquid'
-gem "paperclip", "~> 4.1"
 gem 'devise'
 
 gem 'nokogiri'
