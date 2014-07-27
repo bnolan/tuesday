@@ -2,6 +2,7 @@ class ElementEditor extends Backbone.View
   initialize: ->
     @template = $("script#element-edit").html()
     @render()
+    window.ee = this
 
   focus: ->
     p = @$(".editing-field *")[0]
@@ -11,6 +12,17 @@ class ElementEditor extends Backbone.View
     r.setEnd(p, 0)
     s.removeAllRanges()
     s.addRange(r)
+
+  getSelection: ->
+    sel = window.getSelection()
+    container = document.createElement("div")
+    
+    if rangeCount = sel.rangeCount
+      rangeCount--
+      for i in [0..rangeCount]
+        container.appendChild(sel.getRangeAt(i).cloneContents())
+
+    container.innerHTML
 
   render: ->
     @$el.html @template
@@ -63,8 +75,6 @@ class ElementEditor extends Backbone.View
     @save()
 
   save: ->
-    console.log "saving #{@model.cid}"
-
     @model.getPage().save {}, {
       success : =>
         window.location.hash = ""
@@ -76,13 +86,18 @@ class ElementEditor extends Backbone.View
     @model.destroy()
     @save()
 
-  onBold: ->
+  onBold: =>
     document.execCommand("bold", false)
 
-  onItalic: ->
+  onItalic: =>
     document.execCommand("italic", false)
 
-  onCreateLink: ->
-    document.execCommand("createlink", false, "http://googs/")
+  onCreateLink: =>
+    if @getSelection().match /<a/
+      document.execCommand("unlink", false, false)
+    else if url = prompt("Enter URL to link to")
+      document.execCommand("createlink", false, url)
+    else
+      # do nothing?
 
 @ElementEditor = ElementEditor

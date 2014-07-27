@@ -77,3 +77,26 @@ header{
   }
 }
 
+p.notice{
+  background: #ffa;
+  padding: 10px;
+  border-radius: 2px;
+}
+
+form{
+  .f{
+    position: relative;
+    margin-bottom: 20px;
+
+    label{
+      display: block;
+      color: #555;
+    }
+    input[type='text']{
+      font: inherit;
+    }
+    inout[type='submit']{
+      font: inherit;
+    }
+  }
+}

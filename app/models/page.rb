@@ -1,19 +1,15 @@
 class Page < ActiveRecord::Base
   belongs_to :site
   before_create :set_content
-
-  def name
-    title
-  end
+  validates_uniqueness_of :path
 
   def set_content
-    self.content = "<h1>#{self.title.slice(0,20)}</h1><p>Tap this content to edit.</p>"
+    self.content = "<h1>#{self.name.slice(0,20)}</h1><p>Tap this paragraph to edit.</p>"
   end
 
   def to_liquid
     {
-      'name' => title,
-      'title' => title,
+      'name' => name,
       'content' => content,
       'path' => '/' + path,
       'position' => position

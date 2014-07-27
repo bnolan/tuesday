@@ -1,0 +1,21 @@
+<h2>
+  Rename site
+</h2>
+
+<%= form_for @site do |f| %>
+
+  <div class="f">
+    <%= f.label :name %>
+    <%= f.text_field :name, :style => 'width: 480px' %>
+  </div>
+
+  <div class="f">
+    <%= f.label :subdomain %>
+    <%= f.text_field :subdomain, :style => 'width: 240px; text-align: right;' %>.tuesdayapp.com
+  </div>
+
+  <div class="f">
+    <%= submit_tag "Save" %> or <%= link_to "Back", :back %>
+  </div>
+
+<% end %>

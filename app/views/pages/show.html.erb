@@ -67,7 +67,9 @@
 
     <p>
       &gt; <%= link_to "Edit theme", edit_theme_path(@site.theme.id) %><br />
-      &gt; <%= link_to "View site", @site.full_url %>
+      &gt; <%= link_to "View site", @site.full_url %><br />
+      &gt; <%= link_to "Rename site", edit_site_path(@site) %><br />
+      &gt; <%= link_to "New Page", new_site_page_path(@site) %>
     </p>
 
     <h3>Pages</h3>

@@ -2,6 +2,20 @@ class PagesController < ApplicationController
   before_action :authenticate_user!
   before_action :load_site
 
+  def new
+    @page = Page.new
+  end
+
+  def create
+    @page = @site.pages.build page_params
+
+    if @page.save
+      redirect_to [@site, @page]
+    else
+      render :action => 'new'
+    end
+  end
+
   def show
     @page = @site.pages.find(params[:id])
   end
@@ -9,27 +23,21 @@ class PagesController < ApplicationController
   def destroy
     @page = @site.pages.find(params[:id])
     @page.destroy
-    flash[:message] = "Page deleted"
+    flash[:notice] = "Page deleted"
     redirect_to [@site, @site.home_page]
   end
 
   
   def edit
-    @site = Site.find(params[:site_id])
-    @page = Page.find(params[:id])
+    @page = @site.pages.find(params[:id])
   end
 
   def update
-    @site = Site.find(params[:site_id])
-    @page = Page.find(params[:id])
+    @page = @site.pages.find(params[:id])
 
     @page.update_attributes! page_params
 
     render :json => { :success => true }
-  end
-
-  def create
-    @page = @site.pages.create! page_params
   end
 
   protected
@@ -39,7 +47,7 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:title, :path, :position, :content)
+    params.require(:page).permit(:name, :path, :position, :content)
   end
 
 end

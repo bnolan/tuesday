@@ -16,8 +16,20 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find(params[:id])
+    @site = current_user.sites.find(params[:id])
     redirect_to [@site, @site.home_page]
+  end
+
+  def edit
+    @site = current_user.sites.find(params[:id])
+  end
+
+  def update
+    @site = current_user.sites.find(params[:id])
+    @site.update_attributes! site_params
+    @site.compile!
+    flash[:notice] = "Site updated"
+    redirect_to @site
   end
 
   protected
