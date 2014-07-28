@@ -18,8 +18,14 @@
       </h1>
 
       <div class="auth">
-        <%= link_to "Sign in", new_user_session_path %> |
-        <%= link_to "Register", new_user_registration_path %>
+        <% if current_user %>
+          Logged in as <%= current_user.email.gsub(/@.+/,'@..') %> | 
+          <%= link_to "Change your password", edit_user_registration_path %> |
+          <%= link_to "Sign out", user_session_path, :method => 'delete' %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path %> |
+          <%= link_to "Register", new_user_registration_path %>
+        <% end %>
       </div>
 
     </header>

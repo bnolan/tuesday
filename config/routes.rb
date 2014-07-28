@@ -16,8 +16,6 @@ Cms::Application.routes.draw do
 
   match '*path' => 'welcome#options', :via => [:options]
   match 'pages' => 'welcome#options', :via => [:options]
-  
-  get '*path' => 'pages#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
