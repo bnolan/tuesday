@@ -1,8 +1,8 @@
-<h1>
+<h3>
   Your Sites
-</h1>
+</h3>
 
-<ul>
+<ul class="sites-list">
 <% current_user.sites.each do |site| %>
   <li><%= link_to site.name, site %></li>
 <% end %>

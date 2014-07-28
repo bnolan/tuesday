@@ -33,12 +33,20 @@ h1,h2,h3,h4,h5{
   box-sizing: border-box;
 }
 
+$is_mobile: "screen and (max-device-width: 480px)";
+
 .page-wrapper{
   margin: 0 40px;
+  padding: 20px;
+ 
+  @media #{$is_mobile}{ 
+    margin: 0;
+    padding: 10px;
+  }
+ 
   background: white;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
   min-height: 100%;
-  padding: 20px;
 }
 
 header{
@@ -62,6 +70,12 @@ header{
 
     b{
       text-shadow: 0 0 3px rgba(0,0,0,0.5);
+    }
+  }
+
+  @media #{$is_mobile}{ 
+    span{
+      display: none;
     }
   }
 

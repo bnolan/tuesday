@@ -14,13 +14,13 @@
     <header>
 
       <h1>
-        <b>Tuesday</b> - Website builder for Mobile
+        <b>Tuesday</b><span> - Website builder for Mobile</span>
       </h1>
 
       <div class="auth">
         <% if current_user %>
-          Logged in as <%= current_user.email.gsub(/@.+/,'@..') %> | 
-          <%= link_to "Change your password", edit_user_registration_path %> |
+          <span class="name">Logged in as <%= current_user.email.gsub(/@.+/,'@..') %> | </span>
+          <%= link_to "Profile", edit_user_registration_path %> |
           <%= link_to "Sign out", user_session_path, :method => 'delete' %>
         <% else %>
           <%= link_to "Sign in", new_user_session_path %> |
