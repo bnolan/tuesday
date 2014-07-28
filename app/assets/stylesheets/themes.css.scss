@@ -2,12 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "common";
+
 $height: 800px;
 
 .themes-controller{
+
+  @media #{$is_mobile}{ 
+    .right-column{
+      display: none;
+    }
+  }
+
+  @media #{$not_mobile}{ 
+    .left-column{
+      width: 500px;
+      float: left;
+      padding: 5px;
+    }
+
+    .right-column{
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+
   .two-column-layout{
     background: #ccc;
     height: $height;
+    padding-top: 5px;
 
     .pane.active{
       display: block;
@@ -22,6 +46,11 @@ $height: 800px;
       .explanation{
         font-size: 0.85em;
         color: #666;
+        padding-bottom: 5px;
+
+        a{
+          color: #555;
+        }
       }
     }
 
@@ -39,13 +68,10 @@ $height: 800px;
     }
 
     .left-column{
-      width: 500px;
-      float: left;
-      padding: 5px;
 
       ul.tabs{
         margin: 0;
-        padding: 0;
+        padding: 5px 0 0 0;
 
         li{
           margin: 0;
@@ -66,9 +92,6 @@ $height: 800px;
     }
 
     .right-column{
-      width: 100%;
-      text-align: center;
-      
       .preview-iframe{
         width: 320px;
         height: $height - 100px;

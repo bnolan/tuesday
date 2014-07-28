@@ -4,6 +4,10 @@ class Site < ActiveRecord::Base
   belongs_to :theme
   validates_uniqueness_of :subdomain
 
+  def paid?
+    false
+  end
+  
   def home_page
     pages.first
   end

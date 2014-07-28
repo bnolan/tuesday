@@ -37,7 +37,14 @@ class PagesController < ApplicationController
 
     @page.update_attributes! page_params
 
-    redirect_to [@site, @page]
+    respond_to do |format|
+      format.json do
+        render :json => { :success => true }
+      end
+      format.html do
+        redirect_to [@site, @page]
+      end
+    end
   end
 
   protected

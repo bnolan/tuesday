@@ -1,0 +1,14 @@
+
+/*
+ 
+ Usage:
+    @media #{is_mobile}{ 
+    }
+
+*/
+$is_mobile: "screen and (max-device-width: 480px)";
+$not_mobile: "screen and (min-device-width: 480px)";
+
+
+/* Colors */
+$pink: #f0a;

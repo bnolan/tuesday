@@ -2,59 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "common";
+
 .pages-controller{
 
-  .two-column-layout{
-    position: relative;
-    margin-top: 20px;
+  @media #{$is_mobile}{ 
+  }
 
-    .left-column{
-      width: 300px;
-      position: absolute;
-      border-right: 1px solid #ccc;
-      margin-right: 20px;
-      min-height: 1000px;
-    }
+  @media #{$not_mobile}{ 
+    .two-column-layout{
+      position: relative;
+      margin-top: 20px;
 
-    .right-column{
-      margin-left: 320px;
+      .left-column{
+        width: 300px;
+        position: absolute;
+        border-right: 1px solid #ccc;
+        margin-right: 20px;
+        min-height: 1000px;
+      }
+
+      .right-column{
+        margin-left: 320px;
+      }
     }
   }
 
   .edit-container{
-    .toolbar.subtoolbar{
-      border-radius: 3px;
-      background: linear-gradient(#bbb, #999);
-    }
-
-    .toolbar{
-      border-radius: 3px;
-      background: linear-gradient(#777, #555);
-      color: white;
-      padding: 5px 10px;
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-      border-top: 1px solid rgba(255,255,255,0.8);
-      border-bottom: 1px solid rgba(0,0,0,0.5);
-
-      button, a{
-        font: inherit;
-        text-decoration: none;
-        border: none;
-        background: none;
-        color: white;
-        text-shadow: 1px 1px 1px black;
-        line-height: 30px;
-        padding: 0 5px;
-        margin: 0;
-
-        &:hover{
-          color: yellow;
-        }
-      }
-
-      .float-right{
-        float: right;
-      }
-    }
   }
 }

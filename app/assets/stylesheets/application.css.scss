@@ -12,6 +12,8 @@
  *= require_tree .
  */
 
+@import 'common';
+
 body,html{
   margin: 0;
   padding: 0;
@@ -23,8 +25,6 @@ body{
   background: linear-gradient(#eee, #ccc);
 }
 
-$color: #eee;
-
 h1,h2,h3,h4,h5{
   font-weight: 200;
 }
@@ -32,8 +32,6 @@ h1,h2,h3,h4,h5{
 *{
   box-sizing: border-box;
 }
-
-$is_mobile: "screen and (max-device-width: 480px)";
 
 .page-wrapper{
   margin: 0 40px;
@@ -91,12 +89,14 @@ header{
   }
 }
 
+/* Flash notice */
 p.notice{
   background: #ffa;
   padding: 10px;
   border-radius: 2px;
 }
 
+/* Common form layout components */
 form{
   .f{
     position: relative;
@@ -114,3 +114,39 @@ form{
     }
   }
 }
+
+/* Toolbars used throughout the site */
+
+    .toolbar.subtoolbar{
+      background: linear-gradient(#bbb, #999);
+    }
+
+    .toolbar{
+      border-radius: 3px;
+      background: linear-gradient(#777, #555);
+      color: white;
+      padding: 5px 10px;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      border-top: 1px solid rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(0,0,0,0.5);
+
+      button, a{
+        font: inherit;
+        text-decoration: none;
+        border: none;
+        background: none;
+        color: white;
+        text-shadow: 1px 1px 1px black;
+        line-height: 30px;
+        padding: 0 5px;
+        margin: 0;
+
+        &:hover{
+          color: yellow;
+        }
+      }
+
+      .float-right{
+        float: right;
+      }
+    }

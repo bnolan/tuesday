@@ -10,10 +10,13 @@ Cms::Application.routes.draw do
     resources :pages
   end
 
+  # fixme - wtf backbone
+  put 'sites/:site_id/pages' => 'pages#update'
+
   resources :themes
   
-  # put 'sites/:site_id/pages' => 'pages#update'
-
+  get 'upgrade' => 'welcome#upgrade', :as => :upgrade
+  
   # match '*path' => 'welcome#options', :via => [:options]
   # match 'pages' => 'welcome#options', :via => [:options]
 
