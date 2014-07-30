@@ -1,4 +1,7 @@
-    results =<<EOF
+class AddTemplateAndSsToSites < ActiveRecord::Migration
+  def change
+
+        results =<<EOF
 
       html,body{
         margin: 0;
@@ -71,6 +74,7 @@
 
 EOF
 
+    Site.update_all :stylesheet => results
 
     results = <<EOF
       <html>
@@ -102,5 +106,10 @@ EOF
             </div
           </div>
         </body>
-      </html>"
+      </html>
 EOF
+
+      Site.update_all :template => results
+
+  end
+end
