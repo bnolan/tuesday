@@ -7,7 +7,11 @@ Cms::Application.routes.draw do
   root 'welcome#index'
 
   resources :sites do
+    member do
+      get 'theme', :as => :theme
+    end
     resources :pages
+    resources :images
   end
 
   # fixme - wtf backbone

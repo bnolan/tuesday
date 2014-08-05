@@ -20,6 +20,10 @@ class SitesController < ApplicationController
     redirect_to [@site, @site.home_page]
   end
 
+  def theme
+    @site = current_user.sites.find(params[:id])
+  end
+
   def edit
     @site = current_user.sites.find(params[:id])
   end

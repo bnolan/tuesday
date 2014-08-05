@@ -30,4 +30,14 @@
 
   .edit-container{
   }
+
+  input.editing-field{
+    font-size: 2em;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  select{
+    font: inherit;
+  }
 }

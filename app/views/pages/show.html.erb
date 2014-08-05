@@ -1,4 +1,4 @@
-<script type="text/html" id="element-edit">
+<script type="text/html" id="paragraph-edit">
   <div class="toolbar">
     <a href="#">&lt; Back</a>
     <button class="bold" style="font-weight: bold">B</button>
@@ -12,6 +12,37 @@
   </div>
 </script>
 
+<script type="text/html" id="heading-edit">
+  <div class="toolbar">
+    <a href="#">&lt; Back</a>
+    <button class="float-right save">Save</button>
+    <button class="float-right delete">Delete</button>
+  </div>
+
+  <input type="text" class="editing-field" />
+
+  <p>
+    Size: <select>
+      <option value="h1">Heading 1</option>
+      <option value="h2">Heading 2</option>
+      <option value="h3">Heading 3</option>
+    </select>
+  </p>
+
+</script>
+
+<script type="text/html" id="image-edit">
+  <div class="toolbar">
+    <a href="#">&lt; Back</a>
+    <button class="float-right save">Save</button>
+    <button class="float-right delete">Delete</button>
+  </div>
+
+  <% form_for [@site, Image.new], :multipart => true do |f| %>
+    <%= f.file_field :image %>
+  <% end %>
+</script>
+
 <script type="text/html" id="page-edit">
   <div class="toolbar">
     <%= link_to "Rename", edit_site_page_path(@site, @page) %>
@@ -23,6 +54,7 @@
   <div class="subtoolbar toolbar" style="display: none">
     <button class="heading">Heading</button>
     <button class="paragraph">Paragraph</button>
+    <button class="image">Image</button>
   </div>
 
   <div class="page">
@@ -57,8 +89,6 @@
       <dd><%= @site.name %></dd>
       <dt>Site domain</dt>
       <dd><%= @site.subdomain %>.tuesdayapp.com</dd>
-      <dt>Theme</dt>
-      <dd><%= @site.theme.name %></dd>
     </dl>
 
     <h3>
@@ -66,7 +96,7 @@
     </h3>
 
     <p>
-      &gt; <%= link_to "Edit theme", edit_theme_path(@site.theme.id) %><br />
+      &gt; <%= link_to "Edit theme", theme_site_path(@site) %><br />
       &gt; <%= link_to "View site", @site.full_url %><br />
       &gt; <%= link_to "Rename site", edit_site_path(@site) %><br />
       &gt; <%= link_to "New Page", new_site_page_path(@site) %>

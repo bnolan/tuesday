@@ -1,0 +1,63 @@
+
+<div class="two-column-layout">
+  <div class="left-column">
+    <%= form_for @site do |f| %>
+
+      <div class="toolbar">
+        <%= link_to "< Back", @site %>
+        <button type="submit" class="float-right">Save</button>
+      </div>
+
+      <ul class="tabs">
+        <li>Template</li>
+        <li>Stylesheet</li>
+        <li class="mobile">Preview</li>
+      </ul>
+
+      <!--div class="active pane">
+        <div class="explanation">
+          Below are all the available themes for use on your site. You can customise any
+          theme once you have selected it.
+        </div>
+      </div-->
+
+      <div class="active pane">
+        <div class="explanation">
+          This is a liquid template. You can read more about <%= link_to "liquid markup here", "https://github.com/Shopify/liquid/wiki/Liquid-for-Designers" %>.
+          <!--
+          <% if !@site.paid? %>
+            (You will need to <%= link_to "upgrade to a pro account", upgrade_path %> to customise your theme)
+          <% end %>
+          -->
+        </div>
+        
+        <%= f.text_area :template, :wrap => 'off' %>
+      </div>
+
+      <div class="pane">
+        <div class="explanation">
+          This is a .scss stylesheet. You can read <%= link_to "about sass here", "http://sass-lang.com/documentation/file.SASS_REFERENCE.html" %>.
+
+          <!--
+          <% if !@site.paid? %>
+            (You will need to <%= link_to "upgrade to a pro account", upgrade_path %> to customise your theme)
+          <% end %>
+          -->
+        </div>
+
+        <%= f.text_area :stylesheet, :wrap => 'off' %>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div class="right-column">
+    <center>
+      <%= select_tag "Page", options_for_select(@site.pages.pluck('name')) %>
+    </center>
+
+    <iframe class="preview-iframe" src="http://rissa-and-bens.localhost:4000/date.html">
+      
+    </iframe>
+  </div>
+</div>

@@ -30,7 +30,7 @@ class Compiler
   end
 
   def stylesheet_markup
-    @site.theme.stylesheet
+    @site.theme ? @site.theme.stylesheet : @site.stylesheet
   end
 
   def create_pages
@@ -50,6 +50,6 @@ class Compiler
   end
 
   def template_markup
-    @site.theme.template
+    @site.theme ? @site.theme.template : @site.template
   end
 end

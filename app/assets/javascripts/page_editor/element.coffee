@@ -2,6 +2,18 @@ class PageElement extends Backbone.Model
   getNodeName : ->
     @getNode().nodeName.toLowerCase()
 
+  getText: ->
+    $(@get('content')).text()
+
+  isParagraph: ->
+    @getNodeName() == "p"
+
+  isHeading: ->
+    @getNodeName()[0] == "h"
+
+  isImage: ->
+    @getNodeName() == "img"
+
   getNode: ->
     $(@get('content'))[0]
 

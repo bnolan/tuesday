@@ -1,8 +1,60 @@
 class ElementEditor extends Backbone.View
+  # These aren't inherited, add something here and you have to copy paste it below, just so you know
+  events: {
+    "click .save" : 'onSave'
+    'click .delete' : 'onDelete'
+  }
+  
+  save: ->
+    @model.getPage().save {}, {
+      success : =>
+        window.location.hash = ""
+      error: =>
+        alert "COULDNT SAVE YO"
+    }
+
+  onDelete: ->
+    @model.destroy()
+    @save()
+
+class HeadingEditor extends ElementEditor
   initialize: ->
-    @template = $("script#element-edit").html()
+    @template = $("script#heading-edit").html()
+    @nodeName = @model.getNodeName()
     @render()
-    window.ee = this
+
+  events: {
+    "click .save" : 'onSave'
+    'click .delete' : 'onDelete'
+    'change select' : 'onSelect'
+  }
+
+  onSelect: ->
+    @nodeName = @$("select").val()
+
+  focus: ->
+    @$("input").focus()
+
+  render: ->
+    @$el.html @template
+    @$("input").val(@model.getText())
+    @$("select").val(@nodeName)
+    @delegateEvents()
+    @focus()
+
+  getContent: ->
+    "<#{@nodeName}>" + @$("input").val() + "</#{@nodeName}>"
+
+  onSave: =>
+    @model.set { content : @getContent() }
+    @save()
+
+@HeadingEditor = HeadingEditor
+
+class ParagraphEditor extends ElementEditor
+  initialize: ->
+    @template = $("script#paragraph-edit").html()
+    @render()
 
   focus: ->
     p = @$(".editing-field *")[0]
@@ -16,22 +68,16 @@ class ElementEditor extends Backbone.View
   getSelection: ->
     sel = window.getSelection()
     container = document.createElement("div")
-    
     if rangeCount = sel.rangeCount
       rangeCount--
       for i in [0..rangeCount]
         container.appendChild(sel.getRangeAt(i).cloneContents())
-
     container.innerHTML
 
   render: ->
     @$el.html @template
-    @$(".toolbar").css {
-      top : $(window).height() - @$(".toolbar").height() - 260 # todo detect the keyboard size
-    }
     @$(".editing-field").html(@model.get('content')).children().attr('contenteditable', true)
     @delegateEvents()
-
     setTimeout( =>
       @focus()
     , 100)
@@ -46,25 +92,21 @@ class ElementEditor extends Backbone.View
   }
 
   onKeypress: (e) =>
+    # this is mankychops
     if e.keyCode==13
       e.preventDefault()
-
       selection = window.getSelection()
       range = selection.getRangeAt(0)
       br = document.createElement("br")
       textNode = document.createTextNode("\u00a0"); # Passing " " directly will not end up being shown correctly
-
       range.deleteContents() # required or not?
       range.insertNode(br)
       range.collapse(false)
       range.insertNode(textNode)
       range.selectNodeContents(textNode)
-
       selection.removeAllRanges()
       selection.addRange(range)
-
       return true
-
 
   disableEditable: ->
     @$(".editing-field > *").removeAttr('contenteditable')
@@ -72,18 +114,6 @@ class ElementEditor extends Backbone.View
   onSave: =>
     @disableEditable()
     @model.set { content : @$(".editing-field").html() }
-    @save()
-
-  save: ->
-    @model.getPage().save {}, {
-      success : =>
-        window.location.hash = ""
-      error: =>
-        alert "COULDNT SAVE YO"
-    }
-
-  onDelete: ->
-    @model.destroy()
     @save()
 
   onBold: =>
@@ -99,5 +129,4 @@ class ElementEditor extends Backbone.View
       document.execCommand("createlink", false, url)
     else
       # do nothing?
-
-@ElementEditor = ElementEditor
+@ParagraphEditor = ParagraphEditor

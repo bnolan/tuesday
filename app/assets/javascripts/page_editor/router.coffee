@@ -24,9 +24,15 @@ class Router extends Backbone.Router
     }
 
   editElement: (cid) ->
-    @setView new ElementEditor {
-      el : @el.empty()
-      model : @page.getElements().get(cid)
-    }
+    model = @page.getElements().get(cid)
+
+    view = if model.isParagraph()
+        new ParagraphEditor { el : @el.empty(), model : model }
+      else if model.isHeading()
+        new HeadingEditor { el : @el.empty(), model : model }
+      else if model.isImage()
+        new ImageEditor { el : @el.empty(), model : model }
+
+    @setView(view)
 
 @Router = Router
