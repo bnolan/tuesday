@@ -38,8 +38,9 @@ class PageEditor extends Backbone.View
   events: {
     "click .home" : 'onHome'
     "click .addElement" : 'onAddElement'
-    "click .paragraph" : 'onParagraph'
-    "click .heading" : 'onHeading'
+    "click .paragraph" : 'onAddParagraph'
+    "click .heading" : 'onAddHeading'
+    "click .image" : 'onAddImage'
   }
 
   onHome: ->
@@ -48,11 +49,14 @@ class PageEditor extends Backbone.View
   onAddElement: ->
     @$(".subtoolbar").toggle()
 
-  onParagraph: ->
+  onAddParagraph: ->
     @addElement("<p>Your content goes here...</p>")
 
-  onHeading: ->
+  onAddHeading: ->
     @addElement("<h1>Heading</h1>")
+
+  onAddImage: ->
+    @addElement("<img src='/imagenotfound.png' />")
 
   addElement: (html) ->
     position = if @collection.isEmpty()

@@ -10,6 +10,7 @@ gem 'capistrano'
 gem 'capistrano-rvm'
 gem 'capistrano-bundle'
 gem 'capistrano-rails', '~> 1.1'
+gem "paperclip", "~> 4.1"
 
 gem 'liquid'
 gem 'devise'

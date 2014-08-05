@@ -1,46 +1,58 @@
 <script type="text/html" id="paragraph-edit">
-  <div class="toolbar">
-    <a href="#">&lt; Back</a>
-    <button class="bold" style="font-weight: bold">B</button>
-    <button class="italic" style="font-style: italic">i</button>
-    <button class="createlink" style="text-decoration: underline">&#8734;</button>
-    <button class="float-right save">Save</button>
-    <button class="float-right delete">Delete</button>
-  </div>
+  <div class="paragraph-edit">
+    <div class="toolbar">
+      <a href="#">&lt; Back</a>
+      <button class="bold" style="font-weight: bold">B</button>
+      <button class="italic" style="font-style: italic">i</button>
+      <button class="createlink" style="text-decoration: underline">&#8734;</button>
+      <button class="float-right save">Save</button>
+      <button class="float-right delete">Delete</button>
+    </div>
 
-  <div class="editing-field">
+    <div class="editing-field">
+    </div>
   </div>
 </script>
 
 <script type="text/html" id="heading-edit">
-  <div class="toolbar">
-    <a href="#">&lt; Back</a>
-    <button class="float-right save">Save</button>
-    <button class="float-right delete">Delete</button>
+  <div class="heading-edit">
+    <div class="toolbar">
+      <a href="#">&lt; Back</a>
+      <button class="float-right save">Save</button>
+      <button class="float-right delete">Delete</button>
+    </div>
+
+    <input type="text" class="editing-field" />
+
+    <p>
+      Size: <select>
+        <option value="h1">Heading 1</option>
+        <option value="h2">Heading 2</option>
+        <option value="h3">Heading 3</option>
+      </select>
+    </p>
   </div>
-
-  <input type="text" class="editing-field" />
-
-  <p>
-    Size: <select>
-      <option value="h1">Heading 1</option>
-      <option value="h2">Heading 2</option>
-      <option value="h3">Heading 3</option>
-    </select>
-  </p>
-
 </script>
 
 <script type="text/html" id="image-edit">
-  <div class="toolbar">
-    <a href="#">&lt; Back</a>
-    <button class="float-right save">Save</button>
-    <button class="float-right delete">Delete</button>
-  </div>
+  <div class="image-edit">
+    <div class="toolbar">
+      <a href="#">&lt; Back</a>
 
-  <% form_for [@site, Image.new], :multipart => true do |f| %>
-    <%= f.file_field :image %>
-  <% end %>
+      <%= form_for [@site, Image.new], :multipart => true do |f| %>
+        <button>Upload</button>
+        <%= f.file_field :image %>
+      <% end %>
+
+      <button class="float-right save">Save</button>
+      <button class="float-right delete">Delete</button>
+    </div>
+
+    <center>
+      <img src="/nil.gif" />
+    </center>
+
+  </div>
 </script>
 
 <script type="text/html" id="page-edit">

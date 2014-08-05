@@ -1,6 +1,7 @@
 class Site < ActiveRecord::Base
   belongs_to :user
   has_many :pages, :order => 'position'
+  has_many :images
   belongs_to :theme
   validates_uniqueness_of :subdomain
 

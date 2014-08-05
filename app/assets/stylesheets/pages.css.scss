@@ -31,13 +31,48 @@
   .edit-container{
   }
 
-  input.editing-field{
-    font-size: 2em;
-    width: 100%;
-    margin-top: 10px;
+  .heading-edit{
+    input.editing-field{
+      font-size: 2em;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    select{
+      font: inherit;
+    }
   }
 
-  select{
-    font: inherit;
+  .image-edit{
+    form{
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      button{
+
+      }
+      input{
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: pointer;
+      }
+    }
+
+    center{
+      margin-top: 10px;
+
+      img{
+        width: 128px;
+        max-height: 192px;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        background: white;
+      }
+    }
   }
 }
