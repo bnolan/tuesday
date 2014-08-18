@@ -1,9 +1,11 @@
 class Site < ActiveRecord::Base
   belongs_to :user
-  has_many :pages, :order => 'position'
+  has_many :pages, -> { order 'position' }
   has_many :images
   belongs_to :theme
   validates_uniqueness_of :subdomain
+  validates :subdomain, :format => { :with => /\A[a-z0-9]+\z/ }
+  after_create :create_home_page
 
   def preview_path
     full_url
@@ -34,5 +36,8 @@ class Site < ActiveRecord::Base
       'name' => name
     }
   end
-  
+
+  def create_home_page
+    pages.create! :name => "Home", :path => "home"
+  end  
 end
