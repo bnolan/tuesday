@@ -5,16 +5,24 @@ class Site < ActiveRecord::Base
   belongs_to :theme
   validates_uniqueness_of :subdomain
 
+  def preview_path
+    full_url
+  end
+
+  def full_url
+    if Rails.env.production?
+      "http://#{subdomain}.tuesdayapp.com/"
+    else
+      "http://localhost:4000/"
+    end
+  end
+
   def paid?
     false
   end
   
   def home_page
     pages.first
-  end
-
-  def full_url
-    "http://#{subdomain}.localhost:4000/"
   end
 
   def compile!

@@ -9,9 +9,9 @@
       </div>
 
       <ul class="tabs">
-        <li>Template</li>
-        <li>Stylesheet</li>
-        <li class="mobile">Preview</li>
+        <li class="active" for="template">Template</li>
+        <li for="stylesheet">Stylesheet</li>
+        <li for="preview" class="mobile">Preview</li>
       </ul>
 
       <!--div class="active pane">
@@ -21,7 +21,7 @@
         </div>
       </div-->
 
-      <div class="active pane">
+      <div class="active pane" name="template">
         <div class="explanation">
           This is a liquid template. You can read more about <%= link_to "liquid markup here", "https://github.com/Shopify/liquid/wiki/Liquid-for-Designers" %>.
           <!--
@@ -34,7 +34,7 @@
         <%= f.text_area :template, :wrap => 'off' %>
       </div>
 
-      <div class="pane">
+      <div class="pane" name="stylesheet">
         <div class="explanation">
           This is a .scss stylesheet. You can read <%= link_to "about sass here", "http://sass-lang.com/documentation/file.SASS_REFERENCE.html" %>.
 
@@ -48,6 +48,15 @@
         <%= f.text_area :stylesheet, :wrap => 'off' %>
       </div>
 
+      <div class="pane" name="preview">
+        <div class="explanation">
+          This is the preview of your site.
+        </div>
+
+        <iframe class="preview-iframe" src="<%= @site.preview_path %>">
+        </iframe>
+      </div>
+
     <% end %>
   </div>
 
@@ -57,7 +66,6 @@
     </center>
 
     <iframe class="preview-iframe" src="http://rissa-and-bens.localhost:4000/date.html">
-      
     </iframe>
   </div>
 </div>
