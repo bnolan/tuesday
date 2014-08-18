@@ -25,6 +25,13 @@ body{
   background: linear-gradient(#eee, #ccc);
 }
 
+body .only-mobile{
+  display: none;
+}
+body.mobile .only-mobile{
+  display: block;
+}
+
 h1,h2,h3,h4,h5{
   font-weight: 200;
 }
@@ -37,14 +44,14 @@ h1,h2,h3,h4,h5{
   margin: 0 40px;
   padding: 20px;
  
-  @media #{$is_mobile}{ 
-    margin: 0;
-    padding: 10px;
-  }
- 
   background: white;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
   min-height: 100%;
+}
+
+.mobile .page-wrapper{
+  margin: 0;
+  padding: 10px;
 }
 
 header{
@@ -71,12 +78,6 @@ header{
     }
   }
 
-  @media #{$is_mobile}{ 
-    span{
-      display: none;
-    }
-  }
-
   .auth{
     position: absolute;
     right: 10px;
@@ -87,6 +88,10 @@ header{
       color: white;
     }
   }
+}
+
+.mobile header span{
+  display: none;
 }
 
 /* Flash notice */
@@ -150,3 +155,58 @@ form{
         float: right;
       }
     }
+
+/* Sessions */
+
+.devise-sessions-controller, .devise-registrations-controller, .devise-passwords-controller{
+  form > div{
+    padding: 0;
+    margin-bottom: 10px;
+
+    label{
+      display: inline;
+    }
+
+    br{
+      display: none;
+    }
+  }
+
+  form{
+    input[type='email'], input[type='password']{
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      font: inherit;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    input[type='submit']{
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid #999;
+      background: linear-gradient(#ccc, #eee);
+      padding: 5px;
+      font: inherit;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+  }
+}
+
+.devise-links{
+  margin-top: 20px;
+
+  a{
+    text-decoration: none;
+  }
+  a:nth-child(3)::before{
+    content: " | ";
+    text-decoration: none;
+    color: #999;
+    font-size: 1.5em;
+  }
+  br{
+    display: none;
+  }
+}

@@ -5,29 +5,6 @@
 @import "common";
 
 .pages-controller{
-
-  @media #{$is_mobile}{ 
-  }
-
-  @media #{$not_mobile}{ 
-    .two-column-layout{
-      position: relative;
-      margin-top: 20px;
-
-      .left-column{
-        width: 300px;
-        position: absolute;
-        border-right: 1px solid #ccc;
-        margin-right: 20px;
-        min-height: 1000px;
-      }
-
-      .right-column{
-        margin-left: 320px;
-      }
-    }
-  }
-
   .edit-container{
   }
 
@@ -76,3 +53,51 @@
     }
   }
 }
+
+.mobile.pages-controller{
+  .expando{
+    padding: 5px 0;
+
+    button{
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+
+      border-radius: 3px;
+      border: 1px solid #999;
+      background: white;
+      color: #999;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+  }
+
+  .two-column-layout{
+    .left-column{
+      display: none;
+    }
+  }
+}
+
+.not-mobile.pages-controller{
+  .expando{
+    display: none;
+  }
+
+  .two-column-layout{
+    position: relative;
+    margin-top: 20px;
+
+    .left-column{
+      width: 300px;
+      position: absolute;
+      border-right: 1px solid #ccc;
+      margin-right: 20px;
+      min-height: 1000px;
+    }
+
+    .right-column{
+      margin-left: 320px;
+    }
+  }
+}
+

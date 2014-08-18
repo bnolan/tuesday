@@ -38,6 +38,20 @@
   }
 })(jQuery);
 
+function mobilize(){
+  if($(window).width() < 480){
+    $(document.body).addClass('mobile').removeClass('not-mobile');
+  }else{
+    $(document.body).removeClass('mobile').addClass('not-mobile');
+  }
+};
+
+$(function(){
+  mobilize();
+});
+
+$(window).on('resize', mobilize);
+
 // $(document).on('page:fetch', function() {
 //   $("<img src='/spinner.gif' />").addClass("spinner").appendTo("body").show();
 // });

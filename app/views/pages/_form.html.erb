@@ -7,3 +7,13 @@
     <%= f.label :path %>
     <%= f.text_field :path %>
   </div>
+
+  <script>
+    function updatePath(){
+      var value = $("#page_name").val();
+      value = value.toLowerCase().replace(/[^a-z0-9]*/,'-').replace(/^-+/,'').replace(/-+$/, '');
+      $("#page_path").val(value);
+    };
+
+    $("#page_name").keyup(updatePath).blur(updatePath);
+  </script>
