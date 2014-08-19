@@ -9,3 +9,8 @@ about:
   name: About site
   subdomain: about
   user: ben
+
+wedding:
+  name: wedding
+  subdomain: wedding
+  user: ben

@@ -4,7 +4,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
+home:
   site: about
   name: Home
+  path: home
+  position: 1
   content: The home page
+
+date:
+  name: date
+  path: date
+  position: 1
+  content: The wedding is in the future!
