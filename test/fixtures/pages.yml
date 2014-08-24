@@ -11,8 +11,16 @@ home:
   position: 1
   content: The home page
 
+support:
+  site: about
+  name: Support Information
+  path: support
+  position: 2
+  content: "<p>This is support information</p>"
+
 date:
   name: date
   path: date
   position: 1
+  site: wedding
   content: The wedding is in the future!

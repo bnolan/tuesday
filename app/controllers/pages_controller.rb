@@ -24,9 +24,8 @@ class PagesController < ApplicationController
     @page = @site.pages.find(params[:id])
     @page.destroy
     flash[:notice] = "Page deleted"
-    redirect_to [@site, @site.home_page]
+    redirect_to @site
   end
-
   
   def edit
     @page = @site.pages.find(params[:id])
