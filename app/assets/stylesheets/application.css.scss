@@ -76,6 +76,10 @@ header{
     b{
       text-shadow: 0 0 3px rgba(0,0,0,0.5);
     }
+    a{
+      text-decoration: none;
+      color: white;
+    }
   }
 
   .auth{
@@ -107,6 +111,26 @@ form{
     position: relative;
     margin-bottom: 20px;
 
+    small{
+      display: block;
+      color: #777;
+    }
+    
+    .field_with_errors{
+      input{
+        background: #ffa;
+        border: 1px solid red;
+      }
+    }
+
+    .formError{
+      margin-top: 10px;
+      background: red;
+      color: white;
+      border-radius: 2px;
+      padding: 5px;
+    }
+
     label{
       display: block;
       color: #555;
@@ -114,7 +138,7 @@ form{
     input[type='text']{
       font: inherit;
     }
-    inout[type='submit']{
+    input[type='submit']{
       font: inherit;
     }
   }

@@ -4,10 +4,12 @@
 
 <%= form_for @site do |f| %>
 
+  
   <div class="f">
     <%= f.label :name %>
     <%= f.text_field :name %>
     <small>eg: "Dave and Johns wedding"</small>
+    <%= f.error_message_on :name, :prepend_text => "Name " %>
   </div>
 
   <div class="f">
@@ -16,6 +18,7 @@
     <small>
       Your site will be available at subdomain.tuesdayapp.com.
     </small>
+    <%= f.error_message_on :subdomain, :prepend_text => 'Subdomain ' %>
   </div>
 
   <div class="f">

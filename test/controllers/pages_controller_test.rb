@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class PagesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   def setup
     sign_in(users(:ben))
   end

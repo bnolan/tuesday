@@ -7,7 +7,7 @@
 home:
   site: about
   name: Home
-  path: home
+  path: index
   position: 1
   content: The home page
 

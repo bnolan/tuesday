@@ -9,6 +9,12 @@ about:
   name: About site
   subdomain: about
   user: ben
+  stylesheet: "body { font-size: 5em; color: red; }"
+  template: |
+    {% for page in pages %}
+      <li><a href="{{ page.path }}.html">{{ page.name }}</a></li>
+    {% endfor %}
+    {{page.content}}
 
 wedding:
   name: wedding
