@@ -58,6 +58,7 @@
 <script type="text/html" id="page-edit">
   <div class="toolbar">
     <%= link_to "Rename", edit_site_page_path(@site, @page) %>
+    <button class="reorderElements">Reorder</button>
     <button class="addElement">Add...</button>
     <!--button class="float-right save">Save</button-->
     <%= link_to "Delete", site_page_path(@site, @page), :class=>"float-right", :method => 'delete', :data => { :confirm => 'Are you sure you want to delete this page?' } %>

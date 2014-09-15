@@ -11,23 +11,6 @@ class PageEditor extends Backbone.View
     @collection.each (element) =>
       $(element.get('content')).attr('data-cid', element.cid).appendTo div
 
-    # div.sortable({
-    #   axis : 'y'
-    #   stop: ( e, ui ) =>
-    #     # resort the pages
-    #     index = 0
-        
-    #     for el in @$(".page").children()
-    #       @collection.get($(el).attr('data-cid')).set {
-    #         position : ++index
-    #       }
-
-    #     @collection.sort()
-
-    #     @model.save()
-
-    # }).disableSelection()
-
     @$(".page-name").text(@model.get('title'))
     @$(".page-path").text('/' + @model.get('path'))
 
@@ -38,6 +21,7 @@ class PageEditor extends Backbone.View
   events: {
     "click .home" : 'onHome'
     "click .addElement" : 'onAddElement'
+    "click .reorderElements" : 'onReorderElements'
     "click .paragraph" : 'onAddParagraph'
     "click .heading" : 'onAddHeading'
     "click .image" : 'onAddImage'
@@ -45,6 +29,36 @@ class PageEditor extends Backbone.View
 
   onHome: ->
     window.location.hash = "#"
+
+  onReorderElements: ->
+    if @sorting
+      @disableSorting()
+    else
+      @enableSorting()
+
+  disableSorting: ->
+    div = @$(".page")
+    div.removeClass('sorting').enableSelection()
+    @sorting.sortable("destroy")
+    @sorting = false
+
+  enableSorting: ->
+    div = @$(".page")
+
+    @sorting = div.sortable({
+      axis : 'y'
+      stop: ( e, ui ) =>
+        # resort the pages
+        index = 0
+        for el in @$(".page").children()
+          @collection.get($(el).attr('data-cid')).set {
+            position : ++index
+          }
+        @collection.sort()
+        @model.save()
+    })
+
+    div.addClass('sorting').disableSelection()
 
   onAddElement: ->
     @$(".subtoolbar").toggle()
