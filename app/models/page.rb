@@ -2,6 +2,7 @@ class Page < ActiveRecord::Base
   belongs_to :site
   before_create :set_content
   validates_uniqueness_of :path, :scope => :site
+  after_save :compile_site
 
   def set_content
     self.content = "<h1>#{self.name.slice(0,20)}</h1><p>Tap this paragraph to edit.</p>"
@@ -14,5 +15,11 @@ class Page < ActiveRecord::Base
       'path' => '/' + path,
       'position' => position
     }
+  end
+
+  protected
+
+  def compile_site
+    site.compile!
   end
 end
