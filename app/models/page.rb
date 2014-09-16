@@ -20,6 +20,6 @@ class Page < ActiveRecord::Base
   protected
 
   def compile_site
-    site.compile!
+    site.compile!(self)
   end
 end

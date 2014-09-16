@@ -6,7 +6,8 @@ class Site < ActiveRecord::Base
   validates_uniqueness_of :subdomain
   validates :subdomain, :format => { :with => /\A[a-z0-9]+\z/ }
   after_create :create_home_page
-
+  after_save :compile!
+  
   def preview_path
     full_url
   end
@@ -27,8 +28,8 @@ class Site < ActiveRecord::Base
     pages.first
   end
 
-  def compile!
-    Compiler.new(self)
+  def compile!(page = nil)
+    Compiler.new(self).compile(page)
   end
 
   def to_liquid

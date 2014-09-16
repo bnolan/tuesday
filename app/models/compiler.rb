@@ -4,9 +4,16 @@ class Compiler
   def initialize(site)
     @site = site
     FileUtils.mkdir_p(path)
-    remove_files
-    create_stylesheet
-    create_pages
+  end
+
+  def compile(page=nil)
+    if page
+      create_pages([page])
+    else
+      remove_files
+      create_stylesheet
+      create_pages(@site.pages)
+    end
   end
 
   def path
@@ -30,11 +37,35 @@ class Compiler
   end
 
   def stylesheet_markup
-    @site.theme ? @site.theme.stylesheet : @site.stylesheet
+    if @site.theme
+      @site.theme.stylesheet
+    elsif @site.stylesheet
+      @site.stylesheet
+    else
+      default_stylesheet
+    end
   end
 
-  def create_pages
-    @site.pages.each do |page|
+  def default_stylesheet
+    @default_stylesheet ||= IO.readlines(Rails.root.join("lib", "templates", "template.scss")).join
+  end
+
+  def template_markup
+    if @site.theme
+      @site.theme.template
+    elsif @site.template
+      @site.template
+    else
+      default_template
+    end
+  end
+
+  def default_template
+    @default_template ||= IO.readlines(Rails.root.join("lib", "templates", "template.liquid")).join
+  end
+
+  def create_pages(pages)
+    pages.each do |page|
       File.open(path.join(page.path + ".html"), "w") do |f|
         f.puts render_page(page)
       end
@@ -47,9 +78,5 @@ class Compiler
 
   def liquid_template
     @liquid_template ||= Liquid::Template.parse(template_markup)
-  end
-
-  def template_markup
-    @site.theme ? @site.theme.template : @site.template
   end
 end
