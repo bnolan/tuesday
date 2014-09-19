@@ -4,17 +4,20 @@ class Compiler
   def initialize(site)
     @site = site
     FileUtils.mkdir_p(path)
+    FileUtils.mkdir_p(path.join("images"))
   end
 
   def compile(page=nil)
     if page
       create_pages([page])
       create_index
+      copy_images
     else
       remove_files
       create_stylesheet
       create_pages(@site.pages)
       create_index
+      copy_images
     end
   end
 
@@ -25,6 +28,12 @@ class Compiler
   def remove_files
     Dir.glob(path.join("*")).each do |file|
       File.delete(path.join(file))
+    end
+  end
+
+  def copy_images
+    @site.images.each do |image|
+      FileUtils.copy_file Rails.root.join('public', image.image.url(:medium).sub(/\?.+/,'').slice(1,64000)), path.join("images", "#{image.id}-#{image.friendly_name}.#{image.extension}")
     end
   end
 

@@ -30,6 +30,18 @@
     background-size: 16px 16px;
     background-repeat: no-repeat;
     background-position: 0 50%;
+    margin: 0 0 20px 0;
+  }
+
+  .page.sorting > img{
+    height: 100px;
+  }
+
+  .page{
+    img{
+      max-width: 90%;
+      margin: 0 5%;
+    }
   }
 
   .image-edit{
