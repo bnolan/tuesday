@@ -33,12 +33,16 @@ class SitesController < ApplicationController
     @site.update_attributes! site_params
     @site.compile!
     flash[:notice] = "Site updated"
-    redirect_to @site
+
+    respond_to do |format|
+      format.js { render :action => 'update' }
+      format.html { redirect_to @site }
+    end
   end
 
   protected
 
   def site_params
-    params.require(:site).permit(:name, :subdomain)
+    params.require(:site).permit(:name, :subdomain, :template, :stylesheet)
   end
 end

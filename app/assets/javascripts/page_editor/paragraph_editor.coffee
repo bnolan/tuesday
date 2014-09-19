@@ -23,11 +23,21 @@ class ParagraphEditor extends ElementEditor
 
   render: ->
     @$el.html @template
-    @$(".editing-field").html(@model.get('content')).children().attr('contenteditable', true)
+    @makePlainPaste(@$(".editing-field").html(@model.get('content')).children().attr('contenteditable', true))
     @delegateEvents()
     setTimeout( =>
       @focus()
     , 100)
+
+  makePlainPaste: (div) ->
+    div.on 'paste', (e) =>
+      e.preventDefault();
+      text = (e.originalEvent || e).clipboardData.getData('text/html')
+
+      $result = $('<div></div>').append($(text))
+      text = $result.text()
+
+      document.execCommand('insertText', false, text)
 
   events: {
     "click .save" : 'onSave'

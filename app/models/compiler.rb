@@ -9,10 +9,12 @@ class Compiler
   def compile(page=nil)
     if page
       create_pages([page])
+      create_index
     else
       remove_files
       create_stylesheet
       create_pages(@site.pages)
+      create_index
     end
   end
 
@@ -42,11 +44,11 @@ class Compiler
     elsif @site.stylesheet
       @site.stylesheet
     else
-      default_stylesheet
+      Compiler.default_stylesheet
     end
   end
 
-  def default_stylesheet
+  def self.default_stylesheet
     @default_stylesheet ||= IO.readlines(Rails.root.join("lib", "templates", "template.scss")).join
   end
 
@@ -56,12 +58,18 @@ class Compiler
     elsif @site.template
       @site.template
     else
-      default_template
+      Compiler.default_template
     end
   end
 
-  def default_template
+  def self.default_template
     @default_template ||= IO.readlines(Rails.root.join("lib", "templates", "template.liquid")).join
+  end
+
+  def create_index
+    File.open(path.join("index.html"), "w") do |f|
+      f.puts render_page(@site.pages.first)
+    end
   end
 
   def create_pages(pages)

@@ -1,7 +1,7 @@
 
 <div class="two-column-layout">
   <div class="left-column">
-    <%= form_for @site do |f| %>
+    <%= form_for @site, remote: true do |f| %>
 
       <div class="toolbar">
         <%= link_to "< Back", @site %>
@@ -31,7 +31,7 @@
           -->
         </div>
         
-        <%= f.text_area :template, :wrap => 'off' %>
+        <%= f.text_area :template, :wrap => 'off', :value => f.object.template || Compiler.default_template %>
       </div>
 
       <div class="pane" name="stylesheet">
@@ -45,7 +45,7 @@
           -->
         </div>
 
-        <%= f.text_area :stylesheet, :wrap => 'off' %>
+        <%= f.text_area :stylesheet, :wrap => 'off', :value => f.object.stylesheet || Compiler.default_stylesheet %>
       </div>
 
       <div class="pane" name="preview">
@@ -61,11 +61,33 @@
   </div>
 
   <div class="right-column">
-    <center>
-      <%= select_tag "Page", options_for_select(@site.pages.pluck('name')) %>
-    </center>
-
-    <iframe class="preview-iframe" src="http://rissa-and-bens.localhost:4000/date.html">
+    <iframe class="preview-iframe" src="<%= @site.full_url %>">
     </iframe>
   </div>
 </div>
+
+<script>
+  $("form.edit_site").on('ajax:beforeSend', function() {
+    $("iframe").remove();
+    $("<img src='/spinner.gif '>").css({
+      marginTop : $(window).height() / 2 - 80
+    }).appendTo(".right-column");
+  });
+
+  jQuery(document).bind('keydown', 'super+s',function (e){  
+    // alert("?");
+    if((e.metaKey) && (e.keyCode==83)){
+      $("form.edit_site").submit();
+      return false;
+    }
+
+    if((e.ctrlKey) & (e.keyCode == 49)){
+      $(".tabs li:nth-child(1)").click()
+    }
+
+    if((e.ctrlKey) & (e.keyCode == 50)){
+      $(".tabs li:nth-child(2)").click()
+    }
+
+  });
+</script>

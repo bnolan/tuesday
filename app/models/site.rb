@@ -39,6 +39,6 @@ class Site < ActiveRecord::Base
   end
 
   def create_home_page
-    pages.create! :name => "Home", :path => "home"
+    pages.create! :name => "Home", :path => "index"
   end  
 end
