@@ -27,6 +27,14 @@ class Compiler
 
   def remove_files
     Dir.glob(path.join("*")).each do |file|
+      if File.directory?(path.join(file))
+        # should just be /images
+      else
+        File.delete(path.join(file))
+      end
+    end
+
+    Dir.glob(path.join("images", "*")).each do |file|
       File.delete(path.join(file))
     end
   end
