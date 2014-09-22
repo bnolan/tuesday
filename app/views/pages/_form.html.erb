@@ -11,7 +11,7 @@
   <script>
     function updatePath(){
       var value = $("#page_name").val();
-      value = value.toLowerCase().replace(/[^a-z0-9]*/,'-').replace(/^-+/,'').replace(/-+$/, '');
+      value = value.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+/,'').replace(/-+$/, '');
       $("#page_path").val(value);
     };
 
